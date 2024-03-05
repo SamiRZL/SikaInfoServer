@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     res.json("hello hello")
 })
 app.use(cors({
-    origin: 'https://sika-info.vercel.app',
+    origin: '*',
     credentials: true,
 })); app.use('/files', express.static("files"));
 app.use('/documents', documentRoutes);
