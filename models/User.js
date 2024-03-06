@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 const crypto = require('crypto');
 const validator = require('validator');
 
@@ -27,15 +27,22 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-    const salt = await bcrypt.genSaltSync(10)
-    this.password = await bcrypt.hash(this.password, salt)
-    next()
-})
+    try {
+        const hashedPassword = await argon2.hash(this.password);
+        this.password = hashedPassword;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
 
 userSchema.methods.isPasswordMatched = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password)
-}
-
+    try {
+        return await argon2.verify(this.password, enteredPassword);
+    } catch (error) {
+        return false;
+    }
+};
 
 
 const User = mongoose.model('User', userSchema);
