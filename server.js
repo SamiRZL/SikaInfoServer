@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.use(cors({
     origin: '*',
     credentials: true,
-})); app.use('/', express.static("public"));
+})); app.use('/files', express.static("files"));
 app.use('/documents', documentRoutes);
 app.use('/categories', categoriesRoutes);
 app.use('/aspects', aspectsRoutes);
