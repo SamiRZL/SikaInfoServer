@@ -8,11 +8,12 @@
     ],
     "routes": [
         {
+            "src": "/files/(.*)",
+            "dest": "/files/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/server.js"
         }
-    ],
-    "files": [
-        "files/**/*"
     ]
 }
