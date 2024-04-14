@@ -19,7 +19,6 @@ const path = require('path');
 dbConnect()
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'images')));
 app.get("/", (req, res) => {
     res.json("hello hello")
 })
@@ -27,6 +26,7 @@ app.use(cors({
     origin: '*',
     credentials: true,
 }));
+app.use(express.static(path.join(__dirname, 'images')));
 app.use('/documents', documentRoutes);
 app.use('/categories', categoriesRoutes);
 app.use('/aspects', aspectsRoutes);
