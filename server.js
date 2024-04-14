@@ -32,7 +32,7 @@ app.use('/categories', categoriesRoutes);
 app.use('/aspects', aspectsRoutes);
 app.use('/users', usersRoutes);
 
-app.use("/files", express.static("files"));
+app.use("/images", express.static("images"));
 
 
 app.all('*', (req, res, next) => {
