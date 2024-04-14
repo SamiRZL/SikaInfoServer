@@ -19,7 +19,7 @@ const path = require('path');
 dbConnect()
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, 'images')));
 app.get("/", (req, res) => {
     res.json("hello hello")
 })
@@ -32,7 +32,7 @@ app.use('/categories', categoriesRoutes);
 app.use('/aspects', aspectsRoutes);
 app.use('/users', usersRoutes);
 
-app.use("/images", express.static("images"));
+//app.use("/images", express.static("images"));
 
 
 app.all('*', (req, res, next) => {
