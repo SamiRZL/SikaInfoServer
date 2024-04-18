@@ -21,6 +21,11 @@ const loginUser = asyncHandler(async (req, res, next) => {
                 'access_token', accessToken,
                 {
                     maxAge: 24 * 60 * 60 * 1000,
+                    domain: "https://sika-info-server.vercel.app",
+                    sameSite: "none",
+                    secure: true,
+                    path: "/",
+                    httpOnly: true,
                 }
             );
             res.status(200).json({ message: 'User logged in successfully', data: user, token: accessToken });
@@ -56,7 +61,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
                     'access_token', accessToken,
                     {
                         maxAge: 24 * 60 * 60 * 1000,
-                        httpOnly: true
+                        // httpOnly: true
                     }
                 );
                 res.status(200).json({ message: 'User successfully registered', data: newUser, token: accessToken });
