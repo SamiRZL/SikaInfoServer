@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     res.json("hello hello")
 })
 app.use(cors({
-    origin: '*',
+    origin: ['https://sika-info-admin.vercel.app/', 'https://sika-info.vercel.app/'],
     credentials: true,
 }));
 app.use(express.static(path.join(__dirname, 'images')));
