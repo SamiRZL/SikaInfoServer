@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const CustomError = require('../utils/customError');
 const asyncHandler = require('express-async-handler');
@@ -5,7 +6,7 @@ const { generateToken } = require('../config/jwtToken');
 const crypto = require('crypto');
 const { ObjectId } = require('mongodb');
 
-const jwt = require('jsonwebtoken');
+
 
 
 const { log } = require('console');
@@ -21,11 +22,11 @@ const loginUser = asyncHandler(async (req, res, next) => {
                 'access_token', accessToken,
                 {
                     maxAge: 24 * 60 * 60 * 1000,
-                    domain: "https://sika-info-server.vercel.app",
-                    sameSite: "none",
-                    secure: true,
-                    path: "/",
-                    httpOnly: true,
+                    //  domain: "https://sika-info-server.vercel.app",
+                    //sameSite: "none",
+                    //secure: true,
+                    //path: "/",
+                    //  httpOnly: true,
                 }
             );
             res.status(200).json({ message: 'User logged in successfully', data: user, token: accessToken });

@@ -1,4 +1,6 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv').config();
@@ -17,13 +19,14 @@ const path = require('path');
 
 
 dbConnect()
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
     res.json("hello hello")
 })
 app.use(cors({
-    origin: ['https://sika-info-admin.vercel.app', 'https://sika-info.vercel.app'],
+    origin: ['https://sika-info-admin.vercel.app', 'https://sika-info.vercel.app', 'http://localhost:8080'],
     credentials: true,
 }));
 app.use(express.static(path.join(__dirname, 'images')));
