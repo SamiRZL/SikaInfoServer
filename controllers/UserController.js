@@ -88,7 +88,7 @@ const getUser = asyncHandler(async (req, res, next) => {
             // If decoding succeeds, user is logged in
             if (decoded.id) {
                 const user = await User.findById(decoded.id);
-                return res.status(200).json({ isLoggedIn: true, user: user });
+                return res.status(200).json({ role: user.role, isLoggedIn: true, user: user });
             }
         }
 
